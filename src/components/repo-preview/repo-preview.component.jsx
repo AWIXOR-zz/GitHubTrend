@@ -1,15 +1,37 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Button, Media, Row, Card } from "react-bootstrap";
+import { numberOfDays } from "../date-manipulation/date-manipulation";
 
 const RepositoriePreview = ({ repos }) => {
   return (
     <Container>
       <Row className="justify-content-md-center">
-        <ul className="list-unstyled">
+        <ul className="list-unstyled repos">
           {repos.map(repo => (
-            <li>
-              <div className="title">{repo.name}</div>
-            </li>
+            <Card className="mb-2 repo" key={repo.id}>
+              <Media as="li">
+                <img
+                  width={180}
+                  height={180}
+                  className="mr-4"
+                  src={repo.owner.avatar_url}
+                  alt="Github icon"
+                />
+                <Media.Body className="mt-3">
+                  <h5>{repo.name}</h5>
+                  <p>{repo.description}</p>
+                  <Button
+                    className="mr-3"
+                    variant="success"
+                  >{`Stars: ${repo.stargazers_count}`}</Button>
+                  <Button variant="danger">{`Issues: ${repo.open_issues_count}`}</Button>
+                  <p className="mt-4">{`Created at: ${repo.created_at.slice(
+                    0,
+                    10
+                  )} (${numberOfDays(repo.created_at)} Days ago)`}</p>
+                </Media.Body>
+              </Media>
+            </Card>
           ))}
         </ul>
       </Row>

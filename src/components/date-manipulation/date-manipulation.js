@@ -6,4 +6,10 @@ export function last30Days() {
     .format("YYYY-MM-DD");
 }
 
-export default { last30Days };
+export function numberOfDays(repoDate) {
+  let todayDate = new Date();
+  let repoDateConv = new Date(repoDate);
+  let result = todayDate.getTime() - repoDateConv.getTime();
+  return Math.ceil(result / (1000 * 3600 * 24));
+}
+export default { last30Days, numberOfDays };

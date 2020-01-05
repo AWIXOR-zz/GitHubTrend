@@ -10,7 +10,8 @@ class FetchRepos extends React.Component {
     this.state = {
       repos: [],
       currentPage: 1,
-      reposPerPage: 100
+      reposPerPage: 100,
+      totalPages: 34
     };
   }
 
