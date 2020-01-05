@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e8b7ab8a-19d1-4409-9f0b-ab976f446d61/deploy-status)](https://app.netlify.com/sites/frosty-visvesvaraya-1cc064/deploys)
 
-## The Tecks I used:
+## The Techs I used:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). I used react for building this project because I am a react Developer
 
