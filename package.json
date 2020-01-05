@@ -20,6 +20,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "resolutions": {
+    "serialize-javascript": "^2.1.1"
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
