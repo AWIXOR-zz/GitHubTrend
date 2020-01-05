@@ -1,4 +1,4 @@
-# GuthubTrend
+# GitTrend
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e8b7ab8a-19d1-4409-9f0b-ab976f446d61/deploy-status)](https://app.netlify.com/sites/frosty-visvesvaraya-1cc064/deploys)
 
