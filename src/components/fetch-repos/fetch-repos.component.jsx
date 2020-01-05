@@ -11,13 +11,29 @@ class FetchRepos extends React.Component {
       repos: [],
       currentPage: 1,
       reposPerPage: 100,
-      totalPages: 34
+      totalPages: 34,
+      scrolling: false
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.loadRepos();
+    this.scrollListener = window.addEventListener("scroll", e => {
+      this.handleScoll(e);
+    });
   }
+
+  handleScoll = e => {
+    const { scrolling, totalPages, currentPage } = this.state;
+    if (scrolling) return;
+    if (totalPages <= currentPage) return;
+    const lastRepo = document.querySelector(".repos>.repo:last-child");
+    const lastRepoOffset = lastRepo.offsetTop + lastRepo.clientHeight;
+    const pageOffset = window.pageYOffset + window.innerHeight;
+
+    let bootomOffset = 20;
+    if (pageOffset > lastRepoOffset - bootomOffset) this.loadMore();
+  };
 
   loadRepos = () => {
     const { repos, currentPage } = this.state;
@@ -27,7 +43,8 @@ class FetchRepos extends React.Component {
       .then(response => response.json())
       .then(repo =>
         this.setState({
-          repos: [...repos, ...repo.items]
+          repos: [...repos, ...repo.items],
+          scrolling: false
         })
       );
   };
@@ -35,7 +52,8 @@ class FetchRepos extends React.Component {
   loadMore = () => {
     this.setState(
       prevState => ({
-        currentPage: prevState.currentPage + 1
+        currentPage: prevState.currentPage + 1,
+        scrolling: true
       }),
       this.loadRepos
     );
@@ -45,9 +63,17 @@ class FetchRepos extends React.Component {
     const { repos } = this.state;
 
     return (
-      <div className="repos">
+      <div className="container">
+        <div className="row justify-content-md-center">
+          <div className="col-md-auto mt-2">
+            <h1 className="title">Github Trending</h1>
+            <p className="description ">
+              The most starred Github repos that were created in the last 30
+              days.
+            </p>
+          </div>
+        </div>
         <RepositoriePreview repos={repos} />
-        <button onClick={this.loadMore}>Load More</button>
       </div>
     );
   }

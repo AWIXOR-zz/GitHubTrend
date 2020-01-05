@@ -2,11 +2,11 @@ import React from "react";
 import { Container, Button, Media, Row, Card } from "react-bootstrap";
 import { numberOfDays } from "../date-manipulation/date-manipulation";
 
-const RepositoriePreview = ({ repos }) => {
+const RepositoriePreview = ({ repos, loading }) => {
   return (
     <Container>
-      <Row className="justify-content-md-center">
-        <ul className="list-unstyled repos">
+      <Row className="justify-content-center">
+        <ul className="list-unstyled repos mt-4">
           {repos.map(repo => (
             <Card className="mb-2 repo" key={repo.id}>
               <Media as="li">
