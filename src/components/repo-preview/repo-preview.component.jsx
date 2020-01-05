@@ -1,15 +1,20 @@
 import React from "react";
+import { Container, Row } from "react-bootstrap";
 
-const RepositoriePreview = ({ repos, loading }) => {
-  if (loading) return <h2>Loading...</h2>;
+const RepositoriePreview = ({ repos }) => {
   return (
-    <div className="repos">
-      <div className="title">
-        <ul>
-          <li></li>
+    <Container>
+      <Row className="justify-content-md-center">
+        <ul className="list-unstyled">
+          {repos.map(repo => (
+            <li>
+              <div className="title">{repo.name}</div>
+            </li>
+          ))}
         </ul>
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
+
 export default RepositoriePreview;
